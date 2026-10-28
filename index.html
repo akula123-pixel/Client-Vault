@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClientVault - Customer Data Storage & Monthly Payments Management</title>
+  <meta name="description" content="Enterprise Internet Service Provider Customer Billing and Cloud Data Storage Management Dashboard">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230078d4'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ===================================================================
+         SIDEBAR NAVIGATION
+         =================================================================== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="brand-wrapper">
+          <div class="brand-icon">
+            <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>ClientVault <span class="brand-badge">ISP v2.4</span></h1>
+            <div class="brand-sub">Customer Data Storage Hub</div>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Operations</div>
+        
+        <a href="#dashboard" class="nav-link" data-tab="dashboard">
+          <span class="nav-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+            </svg>
+          </span>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="#customers" class="nav-link" data-tab="customers">
+          <span class="nav-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+          </span>
+          <span>Customer Directory</span>
+        </a>
+
+        <!-- REQUIRED NEW FEATURE: Monthly Payments Navigation Item -->
+        <a href="#monthly-payments" class="nav-link active" data-tab="monthly-payments">
+          <span class="nav-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+            </svg>
+          </span>
+          <span>Monthly Payments</span>
+          <span class="nav-badge-new">NEW</span>
+        </a>
+
+        <div class="nav-section-title" style="margin-top: 1rem;">Infrastructure</div>
+
+        <a href="#plans" class="nav-link" data-tab="plans">
+          <span class="nav-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+            </svg>
+          </span>
+          <span>Internet Plans & Vault</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="azure-status-pill">
+          <span class="azure-status-dot"></span>
+          <div>
+            <div style="font-weight: 700; color: #ffffff;">Azure Cloud Vault</div>
+            <div style="font-size: 0.68rem;">Storage Node: West India • 99.98%</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===================================================================
+         MAIN CONTENT AREA
+         =================================================================== -->
+    <div class="main-wrapper">
+
+      <!-- Top Header Navigation -->
+      <header class="top-header">
+        <div class="header-left">
+          <div class="header-title-crumb">
+            <span>ClientVault</span>
+            <span>/</span>
+            <strong id="header-active-crumb">Monthly Payments Management</strong>
+          </div>
+          <span class="demo-pill">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+            Microsoft Azure Workshop Demonstration
+          </span>
+        </div>
+
+        <div class="header-right">
+          <div class="system-date-chip">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>System Date: <strong>27 Oct 2026</strong></span>
+          </div>
+
+          <button id="btn-reset-demo-data" class="btn btn-sm btn-outline" title="Reset sample database to default state">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            Reset Demo Data
+          </button>
+
+          <div class="user-profile-badge">
+            <div class="user-avatar-circle">AZ</div>
+            <div class="user-info-text">
+              <div>Azure Workshop Presenter</div>
+              <div class="user-info-role">Administrator</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Workspace Body -->
+      <main class="content-workspace">
+
+        <!-- ===================================================================
+             TAB 1: MONTHLY PAYMENTS PAGE (PRIMARY SPECIFICATION)
+             =================================================================== -->
+        <div id="tab-monthly-payments" class="tab-pane active">
+
+          <!-- Page Header & Year Selector (Section 1) -->
+          <div class="page-header-row">
+            <div class="page-title-group">
+              <h2>
+                <svg width="26" height="26" fill="none" stroke="#0078d4" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Monthly Payments Management
+              </h2>
+              <p class="page-subtitle">Track, record, and verify 12-month ISP subscription billing with automated status calculation in Indian Rupees (₹).</p>
+            </div>
+
+            <div class="header-action-toolbar">
+              <!-- Year Selector (Section 1) -->
+              <div class="select-wrapper">
+                <select id="global-year-select" class="azure-select" title="Select billing year">
+                  <option value="2026">Billing Year: 2026 (Current)</option>
+                  <option value="2025">Billing Year: 2025 (Historical)</option>
+                  <option value="2024">Billing Year: 2024 (Archive)</option>
+                </select>
+                <span class="select-icon-arrow">▼</span>
+              </div>
+
+              <!-- Quick Hero Record Payment Button -->
+              <button id="btn-open-record-modal-hero" class="btn btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Record Payment
+              </button>
+
+              <!-- Export CSV Button -->
+              <button id="btn-export-payments" class="btn btn-outline" title="Export payments to CSV">
+                <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                Export CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 1: Top Metrics Cards -->
+          <div class="stats-grid-4">
+            <!-- 1. Total payments received -->
+            <div class="stat-card card-received">
+              <div>
+                <div class="stat-label">Total Payments Received</div>
+                <div class="stat-value" id="stat-received-amount">₹0</div>
+                <div class="stat-subtext">
+                  <span class="badge-count badge-count-success" id="stat-received-count">0 fully paid</span>
+                  <span>across portfolio</span>
+                </div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-success">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. Total payments pending -->
+            <div class="stat-card card-pending">
+              <div>
+                <div class="stat-label">Total Payments Pending</div>
+                <div class="stat-value" id="stat-pending-amount">₹0</div>
+                <div class="stat-subtext">
+                  <span class="badge-count badge-count-pending" id="stat-pending-count">0 months awaiting</span>
+                  <span>in billing cycle</span>
+                </div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-pending">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 3. Total overdue payments -->
+            <div class="stat-card card-overdue">
+              <div>
+                <div class="stat-label">Total Overdue Payments</div>
+                <div class="stat-value" id="stat-overdue-amount">₹0</div>
+                <div class="stat-subtext">
+                  <span class="badge-count badge-count-overdue" id="stat-overdue-count">0 overdue</span>
+                  <span>past due date</span>
+                </div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-overdue">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 4. Total amount collected this year -->
+            <div class="stat-card card-collected">
+              <div>
+                <div class="stat-label">Total Amount Collected This Year</div>
+                <div class="stat-value" id="stat-collected-amount">₹0</div>
+                <div class="stat-subtext">
+                  <span class="badge-count badge-count-azure" id="stat-collected-year">All collections in 2026</span>
+                </div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-azure">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1: Monthly Payment Overview Chart (Jan to Dec) -->
+          <div class="chart-card-wrapper">
+            <div class="chart-header">
+              <div class="chart-title-box">
+                <h3>
+                  <svg width="20" height="20" fill="none" stroke="#0078d4" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  </svg>
+                  Monthly Payment Overview (January – December)
+                </h3>
+                <p style="font-size: 0.8rem; color: #64748b;">Annual distribution of payments collected versus outstanding amounts for the selected year</p>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item">
+                  <span class="legend-color-dot" style="background: #0078d4;"></span>
+                  <span>Amount Collected (₹)</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color-dot" style="background: #f3c471;"></span>
+                  <span>Pending / Overdue (₹)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic SVG Chart Container -->
+            <div id="monthly-overview-chart" class="chart-container-box"></div>
+          </div>
+
+          <!-- Section 2 & 5: Customer Search and Autocomplete Results -->
+          <div class="search-banner-container">
+            <div class="search-field-wrapper">
+              <svg class="search-input-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <!-- Exact placeholder specified in prompt -->
+              <input 
+                type="text" 
+                id="customer-search-input" 
+                class="search-customer-input" 
+                placeholder="Search customer by name, customer ID, email, or phone number..." 
+                autocomplete="off"
+              >
+              <button id="search-clear-btn" class="search-clear-btn" title="Clear search">✕</button>
+
+              <!-- Dynamic Autocomplete Results Dropdown -->
+              <div id="search-results-dropdown" class="search-results-dropdown"></div>
+            </div>
+
+            <!-- Quick Selector Chips for Workshop Demonstrators -->
+            <div id="quick-customer-chips" class="quick-customers-bar"></div>
+          </div>
+
+          <!-- Section 2: Selected Customer Profile Information -->
+          <div class="selected-customer-card">
+            <div class="customer-info-main">
+              <div id="selected-cust-avatar" class="customer-large-avatar">RK</div>
+              <div>
+                <div class="customer-title-block">
+                  <h3 id="selected-cust-name">Ramesh Kumar</h3>
+                  <span id="selected-cust-id" class="customer-id-pill">CV-IND-1001</span>
+                  <span class="status-badge badge-paid" style="font-size: 0.7rem; padding: 2px 7px;">Fiber Connected</span>
+                </div>
+                <div class="customer-meta-grid">
+                  <div class="meta-item">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span id="selected-cust-email">ramesh.kumar@outlook.com</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    <span id="selected-cust-phone">+91 98450 12345</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    <span id="selected-cust-storage">1 TB Cloud Vault</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customer Plan and Pricing Block -->
+            <div class="customer-plan-summary-box">
+              <div class="plan-stat-block">
+                <div class="plan-stat-label">Broadband Plan</div>
+                <div class="plan-stat-val" id="selected-cust-plan-name">Fiber Ultra 300 Mbps</div>
+              </div>
+              <div style="width: 1px; height: 35px; background: #cbd5e1;"></div>
+              <div class="plan-stat-block">
+                <div class="plan-stat-label">Monthly Rental</div>
+                <div class="plan-stat-val" id="selected-cust-rental" style="color: #107c41;">₹5,000 / month</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Quick Filter Tabs (All, Paid, Partially Paid, Pending, Overdue) -->
+          <div class="table-toolbar-bar">
+            <div class="status-filter-pills">
+              <button class="filter-pill active" data-filter="ALL">
+                <span>All Months</span>
+                <span class="pill-badge" id="count-filter-all">12</span>
+              </button>
+              <button class="filter-pill" data-filter="Paid">
+                <span>Paid</span>
+                <span class="pill-badge" id="count-filter-paid">0</span>
+              </button>
+              <button class="filter-pill" data-filter="Partially Paid">
+                <span>Partially Paid</span>
+                <span class="pill-badge" id="count-filter-partial">0</span>
+              </button>
+              <button class="filter-pill" data-filter="Pending">
+                <span>Pending</span>
+                <span class="pill-badge" id="count-filter-pending">0</span>
+              </button>
+              <button class="filter-pill" data-filter="Overdue">
+                <span>Overdue</span>
+                <span class="pill-badge" id="count-filter-overdue">0</span>
+              </button>
+            </div>
+
+            <div class="table-stats-summary">
+              <span>Billing Cycle: <strong>Monthly (Due on 10th)</strong></span>
+              <span>•</span>
+              <span>Currency: <strong>INR (₹)</strong></span>
+            </div>
+          </div>
+
+          <!-- Section 2, 4 & 5: Monthly Payment Table (January to December) -->
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="payment-table">
+                <thead>
+                  <tr>
+                    <th style="width: 16%;">Month</th>
+                    <th class="text-right" style="width: 12%;">Amount Due</th>
+                    <th class="text-right" style="width: 12%;">Amount Paid</th>
+                    <th class="text-right" style="width: 12%;">Outstanding Balance</th>
+                    <th style="width: 14%;">Payment Date</th>
+                    <th style="width: 13%;">Due Date</th>
+                    <th style="width: 11%;">Status</th>
+                    <th class="text-right" style="width: 10%;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="payment-table-body">
+                  <!-- Generated dynamically via renderPaymentTable() in app.js -->
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td><strong>Annual Total (12 Months)</strong></td>
+                    <td class="text-right" id="table-foot-total-due">₹60,000</td>
+                    <td class="text-right" id="table-foot-total-paid" style="color: #107c41;">₹20,000</td>
+                    <td class="text-right" id="table-foot-total-balance" style="color: #a80000; font-size: 0.95rem;">₹40,000</td>
+                    <td colspan="4" class="text-right">
+                      <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">*Status dynamically calculated from payment receipts and due dates</span>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===================================================================
+             TAB 2: CUSTOMER DIRECTORY (PRESERVED CLIENTVAULT FEATURE)
+             =================================================================== -->
+        <div id="tab-customers" class="tab-pane">
+          <div class="page-header-row">
+            <div class="page-title-group">
+              <h2>Customer Directory & Storage Vault</h2>
+              <p class="page-subtitle">Manage subscribed broadband clients, allocated storage quotas, and access individual billing histories.</p>
+            </div>
+            <div>
+              <button id="btn-add-customer-open" class="btn btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                </svg>
+                Register New Customer
+              </button>
+            </div>
+          </div>
+
+          <div class="customer-dir-header">
+            <div class="customer-search-input-box">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <input type="text" id="dir-search-input" placeholder="Filter customer directory...">
+            </div>
+            <div style="font-size: 0.82rem; color: #64748b;">
+              Showing all registered client records in database
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="payment-table">
+                <thead>
+                  <tr>
+                    <th>Customer Name & ID</th>
+                    <th>Contact Information</th>
+                    <th>Subscribed Plan</th>
+                    <th>Storage Allocation</th>
+                    <th>Status</th>
+                    <th>2026 Payments</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="customer-dir-table-body">
+                  <!-- Populated by renderCustomerDirectoryTable() -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             TAB 3: DASHBOARD OVERVIEW
+             =================================================================== -->
+        <div id="tab-dashboard" class="tab-pane">
+          <div class="page-header-row">
+            <div class="page-title-group">
+              <h2>ClientVault ISP Operations Hub</h2>
+              <p class="page-subtitle">Real-time overview of internet subscribers, billing collections, and cloud storage allocations.</p>
+            </div>
+            <div>
+              <button class="btn btn-outline-primary" onclick="window.ClientVault.jumpToCustomerPayments('CV-IND-1001')">
+                Go to Monthly Payments &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="stats-grid-4">
+            <div class="stat-card">
+              <div>
+                <div class="stat-label">Total Active Subscribers</div>
+                <div class="stat-value" id="dash-cust-count">6</div>
+                <div class="stat-subtext">All active broadband lines</div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-azure">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div>
+                <div class="stat-label">Annual Revenue Collected</div>
+                <div class="stat-value" id="dash-rev-collected">₹0</div>
+                <div class="stat-subtext">Received payments in 2026</div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-success">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div>
+                <div class="stat-label">Total Receivables Outstanding</div>
+                <div class="stat-value" id="dash-pending-amt" style="color: #d83b01;">₹0</div>
+                <div class="stat-subtext">Pending & Overdue invoices</div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-overdue">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div>
+                <div class="stat-label">Portfolio Collection Rate</div>
+                <div class="stat-value" id="dash-collection-rate" style="color: #0078d4;">85%</div>
+                <div class="stat-subtext">Collection efficiency</div>
+              </div>
+              <div class="stat-icon-bubble icon-bubble-azure">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+            <!-- Recent Transactions Activity -->
+            <div class="table-card" style="padding: 1.5rem;">
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; color: #1e293b;">
+                Recent Payment Transactions Log
+              </h3>
+              <div id="dash-recent-payments-feed"></div>
+            </div>
+
+            <!-- Azure Architecture Widget -->
+            <div class="table-card" style="padding: 1.5rem;">
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: #1e293b;">
+                Azure Cloud Integration
+              </h3>
+              <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 1rem;">
+                ClientVault demonstrates an enterprise ISP customer storage and billing architecture hosted on Azure Cloud.
+              </p>
+              <div style="background: #eff6fc; border: 1px solid #c7e0f4; border-radius: 8px; padding: 0.85rem; font-size: 0.78rem; margin-bottom: 0.75rem;">
+                <div style="font-weight: 700; color: #0078d4;">Azure Blob Storage: Active</div>
+                <div style="color: #475569; margin-top: 2px;">Synchronizing 7.3 TB of customer backups</div>
+              </div>
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem; font-size: 0.78rem;">
+                <div style="font-weight: 700; color: #1e293b;">Billing Ledger: Synced</div>
+                <div style="color: #64748b; margin-top: 2px;">Multi-currency support with INR (₹) locale standard</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             TAB 4: INTERNET PLANS & VAULT STORAGE
+             =================================================================== -->
+        <div id="tab-plans" class="tab-pane">
+          <div class="page-header-row">
+            <div class="page-title-group">
+              <h2>Internet Broadband & Data Vault Tiers</h2>
+              <p class="page-subtitle">Broadband speed packages with integrated Azure cloud backup quotas for retail and enterprise subscribers.</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+            <div class="table-card" style="padding: 1.5rem; border-top: 4px solid #94a3b8;">
+              <h4 style="font-size: 1.1rem; font-weight: 700;">Fiber Bronze</h4>
+              <div style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 0.5rem 0;">₹999 <span style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/month</span></div>
+              <ul style="font-size: 0.82rem; color: #475569; list-style: none; padding: 0; margin-top: 1rem; line-height: 2;">
+                <li>✓ 50 Mbps Symmetric Speed</li>
+                <li>✓ 100 GB Cloud Vault Storage</li>
+                <li>✓ Dynamic IPv4 Allocation</li>
+                <li>✓ 99.5% Uptime SLA</li>
+              </ul>
+            </div>
+
+            <div class="table-card" style="padding: 1.5rem; border-top: 4px solid #0078d4;">
+              <h4 style="font-size: 1.1rem; font-weight: 700;">Fiber Silver</h4>
+              <div style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 0.5rem 0;">₹1,999 <span style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/month</span></div>
+              <ul style="font-size: 0.82rem; color: #475569; list-style: none; padding: 0; margin-top: 1rem; line-height: 2;">
+                <li>✓ 100 Mbps Ultra-fast Fiber</li>
+                <li>✓ 250 GB Cloud Vault Storage</li>
+                <li>✓ Dynamic Public IP</li>
+                <li>✓ Free Dual-Band Wi-Fi 6 Router</li>
+              </ul>
+            </div>
+
+            <div class="table-card" style="padding: 1.5rem; border-top: 4px solid #107c41;">
+              <h4 style="font-size: 1.1rem; font-weight: 700;">Fiber Gold</h4>
+              <div style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 0.5rem 0;">₹3,499 <span style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/month</span></div>
+              <ul style="font-size: 0.82rem; color: #475569; list-style: none; padding: 0; margin-top: 1rem; line-height: 2;">
+                <li>✓ 200 Mbps Dedicated Speed</li>
+                <li>✓ 500 GB Cloud Vault Storage</li>
+                <li>✓ 1 Static IPv4 Address</li>
+                <li>✓ Priority 4-hour Support SLA</li>
+              </ul>
+            </div>
+
+            <div class="table-card" style="padding: 1.5rem; border-top: 4px solid #d83b01; background: #fffdfc;">
+              <div style="font-size: 0.68rem; font-weight: 700; color: #d83b01; text-transform: uppercase;">Most Popular</div>
+              <h4 style="font-size: 1.1rem; font-weight: 700;">Fiber Ultra 300</h4>
+              <div style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 0.5rem 0;">₹5,000 <span style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/month</span></div>
+              <ul style="font-size: 0.82rem; color: #475569; list-style: none; padding: 0; margin-top: 1rem; line-height: 2;">
+                <li>✓ 300 Mbps Gigafiber Speed</li>
+                <li>✓ 1 TB Azure Cloud Vault</li>
+                <li>✓ Static IPv4 + IPv6 Subnet</li>
+                <li>✓ 24/7 Dedicated Account Manager</li>
+              </ul>
+            </div>
+
+            <div class="table-card" style="padding: 1.5rem; border-top: 4px solid #5c2d91;">
+              <h4 style="font-size: 1.1rem; font-weight: 700;">Enterprise Leased</h4>
+              <div style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin: 0.5rem 0;">₹15,000 <span style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/month</span></div>
+              <ul style="font-size: 0.82rem; color: #475569; list-style: none; padding: 0; margin-top: 1rem; line-height: 2;">
+                <li>✓ 1 Gbps 1:1 Dedicated</li>
+                <li>✓ 5 TB Azure Sync Vault</li>
+                <li>✓ /29 Dedicated Subnet</li>
+                <li>✓ 99.9% Financial-grade SLA</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       SECTION 3: PAYMENT RECORDING MODAL
+       =================================================================== -->
+  <div id="record-payment-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <h3>
+            <svg width="20" height="20" fill="none" stroke="#107c41" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Record Subscription Payment
+          </h3>
+          <p>Post customer payment with immediate ledger recalculation</p>
+        </div>
+        <button id="btn-close-payment-modal" class="modal-close-btn">&times;</button>
+      </div>
+
+      <form id="record-payment-form">
+        <input type="hidden" id="pay-cust-id-hidden" name="customerId">
+        <input type="hidden" id="pay-year-hidden" name="year">
+
+        <div class="modal-body">
+          <!-- Customer & Month Context Info -->
+          <div class="modal-customer-context">
+            <div class="modal-customer-info">
+              <div id="modal-cust-avatar" class="modal-customer-avatar">RK</div>
+              <div>
+                <strong id="modal-cust-name" style="font-size: 0.95rem; color: #1e293b;">Ramesh Kumar</strong>
+                <div id="modal-cust-id" style="font-size: 0.75rem; color: #0078d4; font-weight: 600;">CV-IND-1001</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 0.75rem; color: #64748b;">
+                Original Due: <strong id="pay-due-display">₹5,000</strong>
+              </span>
+            </div>
+          </div>
+
+          <!-- Month Selector -->
+          <div class="form-group">
+            <label class="form-label" for="pay-month-select">
+              Payment Month & Year <span class="required-star">*</span>
+            </label>
+            <select id="pay-month-select" class="form-select">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.82rem; color: #64748b; font-weight: 600;">Remaining Balance Outstanding:</span>
+              <span id="pay-balance-display" style="font-size: 1.15rem; font-weight: 800; color: #a80000;">₹5,000</span>
+            </div>
+          </div>
+
+          <!-- Amount Paid & Partial Support -->
+          <div class="form-group">
+            <label class="form-label" for="pay-amount-input">
+              Amount Paid (₹) <span class="required-star">*</span>
+            </label>
+            <div class="input-with-prefix">
+              <span class="input-prefix">₹</span>
+              <input 
+                type="number" 
+                id="pay-amount-input" 
+                name="amountPaid" 
+                class="form-input" 
+                placeholder="5000" 
+                min="1" 
+                required
+              >
+            </div>
+            <div class="input-helper-text">
+              <span>Supports partial payments. Outstanding balance will update automatically.</span>
+            </div>
+            <!-- Quick preset buttons -->
+            <div class="quick-amount-buttons">
+              <button type="button" class="amount-quick-chip" data-amount-type="full">Pay Full Balance</button>
+              <button type="button" class="amount-quick-chip" data-amount-type="half">Pay 50% (Token)</button>
+            </div>
+          </div>
+
+          <!-- Payment Date with Date Picker -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pay-date-input">
+                Payment Date <span class="required-star">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="pay-date-input" 
+                name="paymentDate" 
+                class="form-input" 
+                required
+              >
+            </div>
+
+            <!-- Transaction Reference Number (Optional) -->
+            <div class="form-group">
+              <label class="form-label" for="pay-ref-input">
+                Transaction Ref / UTR
+                <button type="button" id="btn-generate-ref" style="background:none; border:none; color:#0078d4; cursor:pointer; font-size:0.72rem; text-decoration:underline; float:right;">Auto-Fill Ref</button>
+              </label>
+              <input 
+                type="text" 
+                id="pay-ref-input" 
+                name="reference" 
+                class="form-input" 
+                placeholder="e.g. UPI/948212/HDFC"
+              >
+            </div>
+          </div>
+
+          <!-- Payment Method: Cash, UPI, Bank Transfer, or Card -->
+          <div class="form-group">
+            <label class="form-label">Payment Method <span class="required-star">*</span></label>
+            <div class="payment-methods-grid">
+              <div class="payment-method-card">
+                <input type="radio" id="method-upi" name="paymentMethod" value="UPI" checked>
+                <label for="method-upi" class="method-card-label">
+                  <svg class="method-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                  <span class="method-text">UPI / QR</span>
+                </label>
+              </div>
+
+              <div class="payment-method-card">
+                <input type="radio" id="method-card" name="paymentMethod" value="Card">
+                <label for="method-card" class="method-card-label">
+                  <svg class="method-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                  </svg>
+                  <span class="method-text">Debit / Card</span>
+                </label>
+              </div>
+
+              <div class="payment-method-card">
+                <input type="radio" id="method-bank" name="paymentMethod" value="Bank Transfer">
+                <label for="method-bank" class="method-card-label">
+                  <svg class="method-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+                  </svg>
+                  <span class="method-text">Bank / NEFT</span>
+                </label>
+              </div>
+
+              <div class="payment-method-card">
+                <input type="radio" id="method-cash" name="paymentMethod" value="Cash">
+                <label for="method-cash" class="method-card-label">
+                  <svg class="method-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                  <span class="method-text">Cash</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Optional Notes -->
+          <div class="form-group">
+            <label class="form-label" for="pay-notes-input">Notes (Optional)</label>
+            <textarea 
+              id="pay-notes-input" 
+              name="notes" 
+              class="form-textarea" 
+              rows="2" 
+              placeholder="e.g. Received via GPay from customer mobile number; verified against bank statement."
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel-payment" class="btn btn-outline">Cancel</button>
+          <button type="submit" id="btn-save-payment" class="btn btn-primary">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Save Payment
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       TRANSACTION DETAILS & RECEIPT AUDIT MODAL (VIEW ACTION)
+       =================================================================== -->
+  <div id="receipt-view-modal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <h3>
+            <svg width="20" height="20" fill="none" stroke="#0078d4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Payment Transaction History & Receipt
+          </h3>
+          <p>Audit trail of all transactions and payments for this billing month</p>
+        </div>
+        <button id="btn-close-receipt" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body" id="receipt-modal-content">
+        <!-- Rendered by openReceiptModal() -->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btn-print-receipt" class="btn btn-outline">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          Print Receipt
+        </button>
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('receipt-view-modal').classList.remove('show')">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       SECTION 6: CUSTOMER PROFILE MODAL (WITH PAYMENT HISTORY TAB)
+       =================================================================== -->
+  <div id="customer-profile-modal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <h3>Customer Profile & Vault Storage</h3>
+          <p>Integrated customer account and 12-month payment record ledger</p>
+        </div>
+        <button id="btn-close-profile-modal" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body" id="customer-profile-content">
+        <!-- Rendered dynamically by openCustomerProfileModal() in app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Core Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
